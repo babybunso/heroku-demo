@@ -1,2 +1,1 @@
-web: sh setup.sh && streamlit run hello-world
-worker: YOUR_COMMAND
+web: sh setup.sh && streamlit run index.py

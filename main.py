@@ -1,18 +1,8 @@
 import streamlit as st
-
 import numpy as np
-
 import pandas as pd
-import geopandas as gpd
-
 import matplotlib.pyplot as plt
-import seaborn as sns
 
-import folium
-from streamlit_folium import folium_static
-
-import warnings
-warnings.filterwarnings('ignore')
 
 df = pd.read_csv('schools_combined.csv')
 
@@ -66,39 +56,4 @@ elif my_page == 'Page 2':
 	# display graph by plotting figure variable
 	plt.show()
 	st.pyplot(fig)
-
-
-elif my_page == 'Page 3':
-    st.title("Geospatioal Analysis of Schools")
-    schools = gpd.read_file('phl_schp_deped/phl_schp_deped.shp')
-    schools["x"] = schools.geometry.centroid.x
-    schools["y"] = schools.geometry.centroid.y
-    #st.write(schools.head(20))
-    # Coordinates to show
-    map_center = [14.583197, 121.051538]
-
-    # Styling the map
-    mymap = folium.Map(location=map_center, height=700, width=1000, tiles="OpenStreetMap", zoom_start=14)
-    option_city = st.sidebar.selectbox(
-        'Which city',
-        schools["Division"].unique())
-    'You selected: ', option_city
-    city = option_city
-
-    df_city = schools[schools["Division"]==city]
-
-    for i in np.arange(len(df_city)):
-        lat = df_city["y"].values[i]
-        lon = df_city["x"].values[i]
-        name = df_city["School"].values[i]
-        folium.Marker([lat, lon], popup=name).add_to(mymap)
-    folium_static(mymap)
-
-elif my_page == 'Page 4':
-    st.title("Geospatioal Analysis of Schools : st.map")
-    schools = gpd.read_file('phl_schp_deped/phl_schp_deped.shp')
-    # to plot a map using st.map, you need a column names lon and lat
-    schools["lon"] = schools.geometry.centroid.x
-    schools["lat"] = schools.geometry.centroid.y
-    st.map(schools.head(10))
 

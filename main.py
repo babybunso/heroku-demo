@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 
 df = pd.read_csv('schools_combined.csv')
@@ -38,22 +38,22 @@ if my_page == 'Page 1':
 	'You selected: ', option
 
 
-elif my_page == 'Page 2':
+# elif my_page == 'Page 2':
 
-	#Copy paste your code from Jupyter but assign plt.figure to variable
-	grade_level = df.groupby("year_level")["enrollment"].sum()
-	st.header("Count of Students Per Year Level")
+# 	#Copy paste your code from Jupyter but assign plt.figure to variable
+# 	grade_level = df.groupby("year_level")["enrollment"].sum()
+# 	st.header("Count of Students Per Year Level")
 
-	fig = plt.figure(figsize=(8,6)) 
-	plt.bar(grade_level.index, grade_level.values) 
-	plt.title("Students in Public Schools", fontsize=16)
-	plt.ylabel("Number of Enrollees", fontsize=12)
-	plt.xlabel("Year Level", fontsize=12)
-	year = ["grade 1","grade 2", "grade 3", "grade 4", "grade 5", "grade 6",
-	        "first year", "second year", "third year", "fourth year"]
-	plt.xticks(range(len(grade_level.index)), year, rotation=45)
+# 	fig = plt.figure(figsize=(8,6)) 
+# 	plt.bar(grade_level.index, grade_level.values) 
+# 	plt.title("Students in Public Schools", fontsize=16)
+# 	plt.ylabel("Number of Enrollees", fontsize=12)
+# 	plt.xlabel("Year Level", fontsize=12)
+# 	year = ["grade 1","grade 2", "grade 3", "grade 4", "grade 5", "grade 6",
+# 	        "first year", "second year", "third year", "fourth year"]
+# 	plt.xticks(range(len(grade_level.index)), year, rotation=45)
 
-	# display graph by plotting figure variable
-	plt.show()
-	st.pyplot(fig)
+# 	# display graph by plotting figure variable
+# 	plt.show()
+# 	st.pyplot(fig)
 
